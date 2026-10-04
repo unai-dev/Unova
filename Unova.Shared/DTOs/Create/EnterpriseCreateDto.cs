@@ -13,6 +13,14 @@ public class EnterpriseCreateDto
     [Required]
     [StringLength(15)]
     public string NIF { get; set; } = string.Empty;
+
+    [Required]
+    [Phone]
+    public string Phone { get; set; } = string.Empty;
+
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; } = string.Empty;
     #endregion
 
     #region Related Properties 

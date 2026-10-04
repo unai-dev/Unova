@@ -8,5 +8,7 @@ public class EnterpriseReadDto : UnovaDTO
     public required string Name { get; set; }
     public string? Description { get; set; }
     public required string NIF { get; set; }
+    public required string Phone { get; set; }
+    public required string Email { get; set; }
     #endregion
 }
