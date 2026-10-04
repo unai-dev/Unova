@@ -59,6 +59,10 @@ public class EnterpriseService : IEnterpriseService
         if (!addressExists)
             throw new NotFoundException($"La direccion con ID {dto.AddressID} no existe");
 
+        var emailExists = await _context.Enterprises.AnyAsync(x => x.Email.Equals(dto.Email));
+        if (emailExists)
+            throw new BadRequestException($"El email {dto.Email} ya pertenece a otra empresa");
+
         var enterprise = _mapper.Map<Enterprise>(dto);
 
         _context.Add(enterprise);
