@@ -12,7 +12,7 @@ public class LocationCreateDto
     [Required]
     [StringLength(5)]
     public string Column { get; set; } = string.Empty;
-    public int LimitOfBooks { get; set; }
+    public int Limit { get; set; }
     #endregion
 
     #region Related properties
