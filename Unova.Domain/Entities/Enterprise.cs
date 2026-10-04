@@ -8,6 +8,8 @@ public class Enterprise : UnovaEntity
     public string Name { get; set; } = null!;
     public string? Description { get; set; }
     public string NIF { get; set; } = null!;
+    public string Phone { get; set; } = null!;
+    public string Email { get; set; } = null!;
     #endregion
 
     #region Related Properties

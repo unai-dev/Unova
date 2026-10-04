@@ -19,7 +19,13 @@ public class EnterpriseConfiguration : IEntityTypeConfiguration<Enterprise>
             .HasMaxLength(15)
             .IsRequired();
 
-
+        builder.Property(x => x.Phone)
+            .HasMaxLength(20)
+            .IsRequired();
+        
+        builder.Property(x => x.Email)
+            .HasMaxLength(255)
+            .IsRequired();
     }
 }
 
