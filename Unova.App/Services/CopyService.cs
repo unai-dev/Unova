@@ -60,6 +60,15 @@ public class CopyService : ICopyService
         if (copyExists)
             throw new BadRequestException($"Ya existe un ejemplar con el código '{dto.Code}' para el libro con ID {dto.BookID}");
 
+        var location = await _context.Locations.FirstOrDefaultAsync(x => x.ID == dto.LocationID)
+            ?? throw new NotFoundException($"La ubicación con ID {dto.LocationID} no existe");
+
+        var totalBooksInLocation = await _context.Copies
+            .CountAsync(x => x.LocationID == dto.LocationID);
+
+        if (totalBooksInLocation >= location.Limit)
+            throw new BadRequestException($"La ubicación con ID {dto.LocationID} ha alcanzado su límite de ejemplares ({location.Limit})");
+
         var copy = _mapper.Map<Copy>(dto);
 
         _context.Add(copy);
