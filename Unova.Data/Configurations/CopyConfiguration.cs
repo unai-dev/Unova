@@ -11,5 +11,15 @@ public class CopyConfiguration : IEntityTypeConfiguration<Copy>
         builder.Property(x => x.Code)
             .HasMaxLength(50)
             .IsRequired();
+
+        builder.HasOne(x => x.Book)
+            .WithMany(x => x.Copies)
+            .HasForeignKey(x => x.BookID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Location)
+            .WithMany(x => x.Copies)
+            .HasForeignKey(x => x.LocationID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

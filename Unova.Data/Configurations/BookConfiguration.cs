@@ -24,5 +24,15 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 
         builder.Property(x => x.Stock)
             .HasDefaultValue(1);
+
+        builder.HasOne(x => x.Author)
+            .WithMany(x => x.Books)
+            .HasForeignKey(x => x.AuthorID)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x => x.Category)
+            .WithMany(x => x.Books)
+            .HasForeignKey(x => x.CategoryID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -2,9 +2,6 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using Unova.Domain;
-using Unova.Shared;
-
 namespace Unova.App.Services;
 
 public class InventoryService : IInventoryService
@@ -51,32 +48,33 @@ public class InventoryService : IInventoryService
 
     public async Task<InventoryReadDto> Create(InventoryCreateDto dto)
     {
-        var book = await _context.Books
-            .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ID == dto.BookID)
-            ?? throw new NotFoundException($"El libro con ID {dto.BookID} no existe");
+        throw new NotImplementedException();
+        //var book = await _context.Books
+        //    .AsNoTracking()
+        //    .FirstOrDefaultAsync(x => x.ID == dto.BookID)
+        //    ?? throw new NotFoundException($"El libro con ID {dto.BookID} no existe");
 
-        var currentUser = await _userService.GetMe();
+        //var currentUser = await _userService.GetMe();
 
-        var inventory = _mapper.Map<Inventory>(dto);
+        //var inventory = _mapper.Map<Inventory>(dto);
 
-        var totalCopies = book.Copies.Count;
-        var copiesWithoutLocation = book.Copies.Count(x => x.LocationID == StaticVariables.COPIES_WITHOUT_LOCATION);
-        var copiesWithLocation = book.Copies.Count(x => x.LocationID != StaticVariables.COPIES_WITHOUT_LOCATION);
-        var reservedCopies = book.Bookings.Count(x => x.Copy!.BookID == book.ID && x.Status == EBookingStatus.Active);
-        var availableCopies = totalCopies - reservedCopies;
+        //var totalCopies = book.Copies.Count;
+        //var copiesWithoutLocation = book.Copies.Count(x => x.LocationID == StaticVariables.COPIES_WITHOUT_LOCATION);
+        //var copiesWithLocation = book.Copies.Count(x => x.LocationID != StaticVariables.COPIES_WITHOUT_LOCATION);
+        ////var reservedCopies = book.Copies.Where()
+        //var availableCopies = totalCopies - reservedCopies;
 
-        inventory.TotalCopies = totalCopies;
-        inventory.CopiesWithoutLocation = copiesWithoutLocation;
-        inventory.CopiesWithLocation = copiesWithLocation;
-        inventory.AvailableCopies = availableCopies;
-        inventory.ReservedCopies = reservedCopies;
-        inventory.UserID = currentUser.ID;
+        //inventory.TotalCopies = totalCopies;
+        //inventory.CopiesWithoutLocation = copiesWithoutLocation;
+        //inventory.CopiesWithLocation = copiesWithLocation;
+        //inventory.AvailableCopies = availableCopies;
+        //inventory.ReservedCopies = reservedCopies;
+        //inventory.UserID = currentUser.ID;
 
-        _context.Inventories.Add(inventory);
-        await _context.SaveChangesAsync();
+        //_context.Inventories.Add(inventory);
+        //await _context.SaveChangesAsync();
 
-        return _mapper.Map<InventoryReadDto>(inventory);
+        //return _mapper.Map<InventoryReadDto>(inventory);
     }
 
     public async Task Delete(int ID)

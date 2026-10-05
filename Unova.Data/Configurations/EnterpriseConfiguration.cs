@@ -26,6 +26,11 @@ public class EnterpriseConfiguration : IEntityTypeConfiguration<Enterprise>
         builder.Property(x => x.Email)
             .HasMaxLength(255)
             .IsRequired();
+
+        builder.HasOne(x => x.Address)
+            .WithMany(x => x.Enterprises)
+            .HasForeignKey(x => x.AddressID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 
