@@ -1,10 +1,12 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+
 using Unova.Shared.DTOs.Auth;
 using Unova.Shared.Responses;
 
@@ -30,14 +32,6 @@ public class AuthService : IAuthService
         if (emailUnique is not null)
             throw new BadRequestException($"El email {dto.Email} ya pertenece a nuestro sistema");
 
-        //Si el username ya consta en la base de datos, lanzamos badrequest
-        if (!string.IsNullOrEmpty(dto.UserName))
-        {
-            var userNameUnique = await _userManager.Users.AnyAsync(x => x.UserName!.Equals(dto.UserName));
-            if (userNameUnique)
-                throw new BadRequestException($"El nombre de usuario {dto.UserName} ya esta en uso");
-        }
-
         //Si el CIF ya consta en la base de datos, lanzamos badrequest
         var cifUnique = await _userManager.Users.AnyAsync(x => x.CIF.Equals(dto.CIF));
         if (cifUnique)
@@ -46,7 +40,7 @@ public class AuthService : IAuthService
         var user = new User
         {
             CIF = dto.CIF,
-            UserName = dto.UserName ?? dto.Email.Split("@")[0],
+            UserName = dto.UserName,
             Email = dto.Email
         };
 
