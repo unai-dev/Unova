@@ -19,7 +19,6 @@ public class Book : UnovaEntity
     public int CategoryID { get; set; }
     public Category? Category { get; set; }
 
-    public List<Booking> Bookings { get; set; } = new List<Booking>();
     public List<Copy> Copies { get; set; } = new List<Copy>();
     public List<Inventory> Inventories { get; set; } = new List<Inventory>();
     #endregion
