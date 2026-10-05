@@ -2,7 +2,7 @@
 
 namespace Unova.Shared.DTOs.Detail;
 
-public class InvetoryDetailDto : InventoryReadDto
+public class InventoryDetailDto : InventoryReadDto
 {
     #region Related Properties
     public int BookID { get; set; }

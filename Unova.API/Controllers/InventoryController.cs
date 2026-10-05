@@ -36,7 +36,7 @@ public class InventoryController : UnovaController
     }
 
     [HttpGet("detail/{id:int}")]
-    public async Task<ActionResult<InvetoryDetailDto>> GetDetail(
+    public async Task<ActionResult<InventoryDetailDto>> GetDetail(
         [FromRoute] int ID)
     {
         var inventory = await _inventoryService.GetDetail(ID);

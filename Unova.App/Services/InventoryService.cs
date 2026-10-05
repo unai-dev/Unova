@@ -37,7 +37,7 @@ public class InventoryService : IInventoryService
         return _mapper.Map<InventoryReadDto>(inventory);
     }
 
-    public async Task<InvetoryDetailDto> GetDetail(int ID)
+    public async Task<InventoryDetailDto> GetDetail(int ID)
     {
         var inventory = await _context.Inventories
             .Include(x => x.Book)
@@ -46,7 +46,7 @@ public class InventoryService : IInventoryService
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"El inventario con ID {ID} no existe");
 
-        return _mapper.Map<InvetoryDetailDto>(inventory);
+        return _mapper.Map<InventoryDetailDto>(inventory);
     }
 
     public async Task<InventoryReadDto> Create(InventoryCreateDto dto)

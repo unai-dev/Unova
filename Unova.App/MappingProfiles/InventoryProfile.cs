@@ -2,6 +2,6 @@
 
 namespace Unova.App.MappingProfiles;
 
-public class InventoryProfile : UnovaProfile<Inventory, InventoryReadDto, InvetoryDetailDto, InventoryCreateDto>
+public class InventoryProfile : UnovaProfile<Inventory, InventoryReadDto, InventoryDetailDto, InventoryCreateDto>
 {
 }
