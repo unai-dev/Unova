@@ -81,7 +81,7 @@ public class BookingService : IBookingService
 
         //Validamos stock, si el total de reservas activas da el total, lanzamos badrequest
         var activeBookings = await _context.Bookings
-            .CountAsync(x => x.CopyID == dto.CopyID && x.PickupDeadline > dto.StartTime);
+            .CountAsync(x => x.CopyID == dto.CopyID && x.Status == EBookingStatus.Active);
         if (activeBookings >= book.Stock)
             throw new BadRequestException($"No hay ejemplares suficientes para el libro {dto.CopyID}");
 

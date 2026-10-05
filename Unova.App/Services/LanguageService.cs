@@ -49,9 +49,9 @@ public class LanguageService : ILanguageService
 
         //Si el codigo ISO o el nombre ya existen, lanzamos badrequest
         var existsLanguage = await _context.Languages
-            .AnyAsync(x => x.Iso639Code.Equals(dto.Iso639Code) || x.Name.Equals(dto.Name));
+            .AnyAsync(x => x.Iso639Code.Equals(dto.Iso639Code));
         if (existsLanguage)
-            throw new BadRequestException($"Ya existe un idioma con el codigo o nombre introducido");
+            throw new BadRequestException($"Ya existe un idioma con el codigo introducido");
 
         var language = _mapper.Map<Language>(dto);
         _context.Add(language);
