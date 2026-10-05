@@ -37,7 +37,7 @@ public class BookingService : IBookingService
 
         var bookings = await _context.Bookings
             .Where(x => x.UserID == userID)
-            .Include(x => x.Book)
+            .Include(x => x.Copy)
             .AsNoTracking()
             .ToListAsync();
         return _mapper.Map<IEnumerable<BookingReadDto>>(bookings);
@@ -54,7 +54,7 @@ public class BookingService : IBookingService
     public async Task<BookingDetailDto> GetDetail(int ID)
     {
         var booking = await _context.Bookings
-            .Include(x => x.Book)
+            .Include(x => x.Copy)
             .Include(x => x.User)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
@@ -64,8 +64,8 @@ public class BookingService : IBookingService
 
     public async Task<BookingReadDto> Create(BookingCreateDto dto)
     {
-        var book = await _context.Books.FirstOrDefaultAsync(x => x.ID == dto.BookID)
-            ?? throw new NotFoundException($"El libro con ID {dto.BookID} no existe");
+        var book = await _context.Books.FirstOrDefaultAsync(x => x.ID == dto.CopyID)
+            ?? throw new NotFoundException($"El libro con ID {dto.CopyID} no existe");
 
         var userExists = await _userManager.FindByIdAsync(dto.UserID.ToString())
             ?? throw new NotFoundException($"Usuario con ID {dto.UserID} no existe");
@@ -81,16 +81,16 @@ public class BookingService : IBookingService
 
         //Validamos stock, si el total de reservas activas da el total, lanzamos badrequest
         var activeBookings = await _context.Bookings
-            .CountAsync(x => x.BookID == dto.BookID && x.PickupDeadline > dto.StartTime);
+            .CountAsync(x => x.CopyID == dto.CopyID && x.PickupDeadline > dto.StartTime);
         if (activeBookings >= book.Stock)
-            throw new BadRequestException($"No hay ejemplares suficientes para el libro {dto.BookID}");
+            throw new BadRequestException($"No hay ejemplares suficientes para el libro {dto.CopyID}");
 
         //Si el usuario ya ha reservado el libro en el periodo de fecha indicado, lanzamos badrequest
         //Filtramos por bookID, userID, rango de fecha(fecha final de la reserva mayor a fecha de comienzo) y estado(activo)
         var userBookingWithBook = await _context.Bookings
-            .AnyAsync(x => x.BookID == dto.BookID && x.PickupDeadline > dto.StartTime && x.UserID == dto.UserID && x.Status == EBookingStatus.Active);
+            .AnyAsync(x => x.CopyID == dto.CopyID && x.PickupDeadline > dto.StartTime && x.UserID == dto.UserID && x.Status == EBookingStatus.Active);
         if (userBookingWithBook)
-            throw new BadRequestException($"El libro {dto.BookID} ya esta reservado por el mismo usuario {dto.UserID}");
+            throw new BadRequestException($"El libro {dto.CopyID} ya esta reservado por el mismo usuario {dto.UserID}");
 
         var booking = _mapper.Map<Booking>(dto);
         //Agregamos los dias que el usuario tiene para recoger el libro(3)

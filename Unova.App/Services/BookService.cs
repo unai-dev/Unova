@@ -76,7 +76,7 @@ public class BookService : IBookService
         var book = await _context.Books.FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"El libro con ID {ID} no existe");
 
-        var bookHasAnyBooking = await _context.Bookings.AnyAsync(x => x.BookID == ID && x.Status == EBookingStatus.Active);
+        var bookHasAnyBooking = await _context.Bookings.AnyAsync(x => x.CopyID == ID && x.Status == EBookingStatus.Active);
         if (bookHasAnyBooking)
             throw new BadRequestException($"El Libro no puede ser eliminado. Tiene reservas activas");
 
