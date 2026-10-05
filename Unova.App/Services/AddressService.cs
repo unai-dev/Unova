@@ -48,7 +48,7 @@ public class AddressService : IAddressService
     public async Task<AddressReadDto> Create(AddressCreateDto dto)
     {
         var addressExists = await _context.Addresses
-            .AnyAsync(x => x.MainAddress.Equals(dto.MainAddress));
+            .AnyAsync(x => x.MainAddress.Equals(dto.MainAddress) && x.District == dto.District);
 
         if (addressExists)
             throw new BadRequestException($"Main Address {dto.MainAddress} already exists in DB");
