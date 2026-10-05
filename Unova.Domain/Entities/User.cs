@@ -22,5 +22,6 @@ public class User : IdentityUser<int>
     public Center? Center { get; set; }
 
     public List<Booking> Bookings { get; set; } = new List<Booking>();
+    public List<Inventory> Inventories { get; set; } = new List<Inventory>();
     #endregion
 }

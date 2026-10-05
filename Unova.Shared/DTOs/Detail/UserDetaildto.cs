@@ -12,5 +12,6 @@ public class UserDetailDto : UserReadDto
     public int CenterID { get; set; }
     public CenterReadDto? Center { get; set; }
     public List<BookingReadDto> Bookings { get; set; } = new List<BookingReadDto>();
+    public List<InventoryReadDto> Inventories { get; set; } = new List<InventoryReadDto>();
     #endregion
 }

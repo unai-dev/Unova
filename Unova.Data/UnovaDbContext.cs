@@ -20,6 +20,7 @@ public class UnovaDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Address> Addresses => Set<Address>();
     public DbSet<Copy> Copies => Set<Copy>();
     public DbSet<Language> Languages => Set<Language>();
+    public DbSet<Inventory> Inventories => Set<Inventory>();
     #endregion
 
     #region OnModelCreating
