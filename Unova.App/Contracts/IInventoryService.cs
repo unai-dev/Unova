@@ -2,6 +2,6 @@
 
 namespace Unova.App.Contracts;
 
-public interface IInventoryService : IUnovaContract<InventoryReadDto, InvetoryDetailDto, InventoryCreateDto>
+public interface IInventoryService : IUnovaContract<InventoryReadDto, InventoryDetailDto, InventoryCreateDto>
 {
 }
