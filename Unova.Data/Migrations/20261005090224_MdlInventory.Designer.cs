@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Unova.Infrastructure;
 
@@ -11,9 +12,11 @@ using Unova.Infrastructure;
 namespace Unova.Infrastructure.Migrations
 {
     [DbContext(typeof(UnovaDbContext))]
-    partial class UnovaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261005090224_MdlInventory")]
+    partial class MdlInventory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -656,19 +659,6 @@ namespace Unova.Infrastructure.Migrations
                     b.HasIndex("CenterID");
 
                     b.ToTable("asp_Locations", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Aisle = "N/A",
-                            CenterID = 0,
-                            Column = "N/A",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Limit = 0,
-                            Shelf = "N/A"
-                        });
                 });
 
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>

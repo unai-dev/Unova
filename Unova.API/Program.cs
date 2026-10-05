@@ -1,8 +1,11 @@
+using System.Text;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+
 using Scalar.AspNetCore;
-using System.Text;
+
 using Unova.API.Middlewares;
 using Unova.App.Contracts;
 using Unova.App.Services;
@@ -34,6 +37,7 @@ builder.Services.AddScoped<ICenterService, CenterService>();
 builder.Services.AddScoped<ICopyService, CopyService>();
 builder.Services.AddScoped<IEnterpriseService, EnterpriseService>();
 builder.Services.AddScoped<ILanguageService, LanguageService>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
 #endregion
 
 #region AUTOMAPPER 

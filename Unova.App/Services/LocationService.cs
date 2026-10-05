@@ -66,6 +66,9 @@ public class LocationService : ILocationService
 
     public async Task Delete(int ID)
     {
+        if (ID == 1)
+            throw new BadRequestException($"La localizacion con ID {ID} no puede ser eliminada. Esta controla una localizacion 'ausente'");
+
         var location = await _context.Locations.FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"La localizacion con ID {ID} no existe");
 

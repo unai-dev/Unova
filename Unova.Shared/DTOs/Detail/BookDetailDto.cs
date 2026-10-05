@@ -12,5 +12,6 @@ public class BookDetailDto : BookReadDto
 
     public List<CopyReadDto> Copies { get; set; } = new List<CopyReadDto>();
     public List<BookingReadDto> Bookings { get; set; } = new List<BookingReadDto>();
+    public List<InventoryReadDto> Inventories { get; set; } = new List<InventoryReadDto>();
     #endregion
 }
