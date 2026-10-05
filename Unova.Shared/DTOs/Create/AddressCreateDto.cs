@@ -13,6 +13,10 @@ public class AddressCreateDto
     public string? SecondAddress { get; set; }
 
     [Required]
+    [StringLength(255)]
+    public string District { get; set; } = string.Empty;
+
+    [Required]
     [StringLength(5)]
     public string PostalCode { get; set; } = string.Empty;
 
