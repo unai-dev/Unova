@@ -18,6 +18,11 @@ public class CenterConfiguration : IEntityTypeConfiguration<Center>
         builder.Property(x => x.Abbreviation)
             .HasMaxLength(3)
             .IsRequired();
+
+        builder.HasOne(x => x.Enterprise)
+            .WithMany(x => x.Centers)
+            .HasForeignKey(x => x.EnterpriseID)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 
 }
