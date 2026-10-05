@@ -8,6 +8,6 @@ public class BookingCreateDto
 
     #region Related properties
     public int UserID { get; set; }
-    public int BookID { get; set; }
+    public int CopyID { get; set; }
     #endregion
 }

@@ -14,8 +14,8 @@ public class Booking : UnovaEntity
     public int UserID { get; set; }
     public User? User { get; set; }
 
-    public int BookID { get; set; }
-    public Book? Book { get; set; }
+    public int CopyID { get; set; }
+    public Copy? Copy { get; set; }
     #endregion
 }
 
