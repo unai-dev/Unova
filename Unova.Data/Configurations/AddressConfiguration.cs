@@ -15,6 +15,10 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder.Property(x => x.SecondAddress)
             .HasMaxLength(2000);
 
+        builder.Property(x => x.District)
+            .HasMaxLength(255)
+            .IsRequired();
+
         builder.Property(x => x.PostalCode)
             .HasMaxLength(5)
             .IsRequired();
