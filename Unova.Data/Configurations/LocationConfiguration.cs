@@ -22,5 +22,9 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 
         builder.Property(x => x.Limit)
             .HasDefaultValue(5);
+
+        builder.HasData(
+            new Location { ID = 1, Aisle = "N/A", Shelf = "N/A", Column = "N/A", Limit = 0, CreatedAt = DateTime.MinValue }
+            );
     }
 }
