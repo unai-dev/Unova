@@ -27,9 +27,5 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
             .WithMany(x => x.Locations)
             .HasForeignKey(x => x.CenterID)
             .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasData(
-            new Location { ID = 1, Aisle = "N/A", Shelf = "N/A", Column = "N/A", Limit = 0, CreatedAt = DateTime.MinValue }
-            );
     }
 }

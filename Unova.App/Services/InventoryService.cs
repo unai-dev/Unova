@@ -59,14 +59,10 @@ public class InventoryService : IInventoryService
         var inventory = _mapper.Map<Inventory>(dto);
 
         var totalCopies = book.Copies.Count;
-        var copiesWithoutLocation = book.Copies.Count(x => x.LocationID == StaticVariables.COPIES_WITHOUT_LOCATION);
-        var copiesWithLocation = book.Copies.Count(x => x.LocationID != StaticVariables.COPIES_WITHOUT_LOCATION);
         var reservedCopies = await _context.Bookings.CountAsync(x => x.Copy!.BookID == dto.BookID && x.Status == EBookingStatus.Active);
         var availableCopies = totalCopies - reservedCopies;
 
         inventory.TotalCopies = totalCopies;
-        inventory.CopiesWithoutLocation = copiesWithoutLocation;
-        inventory.CopiesWithLocation = copiesWithLocation;
         inventory.AvailableCopies = availableCopies;
         inventory.ReservedCopies = reservedCopies;
         inventory.UserID = currentUser.ID;
