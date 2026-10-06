@@ -12,8 +12,8 @@ using Unova.Infrastructure;
 namespace Unova.Infrastructure.Migrations
 {
     [DbContext(typeof(UnovaDbContext))]
-    [Migration("20261005152525_InitialCreateDB")]
-    partial class InitialCreateDB
+    [Migration("20261006071009_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
