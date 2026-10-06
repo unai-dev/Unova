@@ -12,9 +12,6 @@ public class Location : UnovaEntity
     #endregion
 
     #region Related Properties
-    public int CenterID { get; set; }
-    public Center? Center { get; set; }
-
     public List<Copy> Copies { get; set; } = new List<Copy>();
     #endregion
 }

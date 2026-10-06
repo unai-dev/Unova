@@ -22,10 +22,5 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 
         builder.Property(x => x.Limit)
             .HasDefaultValue(5);
-
-        builder.HasOne(x => x.Center)
-            .WithMany(x => x.Locations)
-            .HasForeignKey(x => x.CenterID)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

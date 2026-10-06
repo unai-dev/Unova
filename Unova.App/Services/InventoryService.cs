@@ -55,11 +55,12 @@ public class InventoryService : IInventoryService
             ?? throw new NotFoundException($"El libro con ID {dto.BookID} no existe");
 
         var currentUser = await _userService.GetMe();
-
         var inventory = _mapper.Map<Inventory>(dto);
 
-        var totalCopies = book.Copies.Count;
-        var reservedCopies = await _context.Bookings.CountAsync(x => x.Copy!.BookID == dto.BookID && x.Status == EBookingStatus.Active);
+        var totalCopies = book.Copies.Count();
+        var reservedCopies = await _context.Bookings
+            .CountAsync(x => x.Copy!.BookID == dto.BookID
+            && x.Status == EBookingStatus.Active);
         var availableCopies = totalCopies - reservedCopies;
 
         inventory.TotalCopies = totalCopies;

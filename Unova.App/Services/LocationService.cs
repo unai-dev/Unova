@@ -37,7 +37,6 @@ public class LocationService : ILocationService
     {
         var location = await _context.Locations
             .Include(x => x.Copies)
-            .Include(x => x.Center)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"La ubicación con ID {ID} no existe");

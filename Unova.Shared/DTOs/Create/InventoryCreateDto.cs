@@ -8,5 +8,6 @@ public class InventoryCreateDto
 
     #region Related Properties
     public int BookID { get; set; }
+    public int CenterID { get; set; }
     #endregion
 }
