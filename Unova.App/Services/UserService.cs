@@ -55,9 +55,7 @@ public class UserService : IUserService
             ?? throw new BadRequestException("Error al claim de  usuario");
 
         var user = await _userManager.Users
-            .Include(x => x.Enterprise)
             .Include(x => x.Bookings)
-            .Include(x => x.Center)
             .Include(x => x.Language)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Email == claim.Value);
@@ -73,15 +71,6 @@ public class UserService : IUserService
         var existsCIF = await _userManager.Users.AnyAsync(x => x.CIF.Equals(dto.CIF));
         if (existsCIF)
             throw new BadRequestException($"El CIF {dto.CIF} ya pertenece a nuestro sistema");
-
-        var enterprise = await _context.Enterprises
-            .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ID == dto.EnterpriseID)
-            ?? throw new NotFoundException($"La empreas {dto.EnterpriseID} no existe");
-
-        var existsCenter = await _context.Centers.AnyAsync(x => x.ID == dto.CenterID && x.EnterpriseID == enterprise.ID);
-        if (!existsCenter)
-            throw new NotFoundException($"El centro {dto.CenterID} no figura en la empresa");
 
         var existsLanguage = await _context.Languages.AnyAsync(x => x.ID == dto.LanguageID);
         if (!existsLanguage)

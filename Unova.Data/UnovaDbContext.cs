@@ -13,10 +13,8 @@ public class UnovaDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Book> Books => Set<Book>();
     public DbSet<Author> Authors => Set<Author>();
     public DbSet<Category> Categories => Set<Category>();
-    public DbSet<Center> Centers => Set<Center>();
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<Booking> Bookings => Set<Booking>();
-    public DbSet<Enterprise> Enterprises => Set<Enterprise>();
     public DbSet<Address> Addresses => Set<Address>();
     public DbSet<Copy> Copies => Set<Copy>();
     public DbSet<Language> Languages => Set<Language>();

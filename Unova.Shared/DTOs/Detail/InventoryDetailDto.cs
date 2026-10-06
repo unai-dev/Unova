@@ -10,5 +10,6 @@ public class InventoryDetailDto : InventoryReadDto
 
     public int UserID { get; set; }
     public UserReadDto? User { get; set; }
+
     #endregion
 }

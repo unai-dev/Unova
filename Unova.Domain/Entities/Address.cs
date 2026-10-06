@@ -14,6 +14,5 @@ public class Address : UnovaEntity
     #endregion
 
     #region Related Properties
-    public List<Enterprise> Enterprises { get; set; } = new List<Enterprise>();
     #endregion
 }

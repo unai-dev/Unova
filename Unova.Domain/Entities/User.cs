@@ -12,14 +12,8 @@ public class User : IdentityUser<int>
     #endregion
 
     #region Related Properties
-    public int EnterpriseID { get; set; }
-    public Enterprise? Enterprise { get; set; }
-
     public int LanguageID { get; set; }
     public Language? Language { get; set; }
-
-    public int CenterID { get; set; }
-    public Center? Center { get; set; }
 
     public List<Booking> Bookings { get; set; } = new List<Booking>();
     public List<Inventory> Inventories { get; set; } = new List<Inventory>();
