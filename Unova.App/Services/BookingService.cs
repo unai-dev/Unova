@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
-using Unova.Domain;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Unova.App.Services;
 

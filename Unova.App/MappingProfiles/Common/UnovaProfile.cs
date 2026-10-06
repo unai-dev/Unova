@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Unova.App.MappingProfiles.Common;
+﻿namespace Unova.App.MappingProfiles.Common;
 
 public abstract class UnovaProfile<TBase, TRead, TDetail, TCreate> : Profile
     where TBase : class
