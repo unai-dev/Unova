@@ -4,7 +4,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 {
     public void Configure(EntityTypeBuilder<Book> builder)
     {
-        builder.ToTable("asp_Books");
+        builder.ToTable("AspNetBooks");
 
         builder.HasKey(x => x.ID);
 

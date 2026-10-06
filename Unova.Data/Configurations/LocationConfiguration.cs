@@ -4,7 +4,7 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 {
     public void Configure(EntityTypeBuilder<Location> builder)
     {
-        builder.ToTable("asp_Locations");
+        builder.ToTable("AspNetLocations");
 
         builder.HasKey(x => x.ID);
 
