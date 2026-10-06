@@ -2,17 +2,22 @@
 
 public class InventoryService : IInventoryService
 {
+    #region Fields
     private readonly UnovaDbContext _context;
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
+    #endregion
 
+    #region Constructor
     public InventoryService(UnovaDbContext context, IMapper mapper, IUserService userService)
     {
         _context = context;
         _mapper = mapper;
         _userService = userService;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<InventoryReadDto>> GetAll()
     {
         var inventories = await _context.Inventories
@@ -81,4 +86,5 @@ public class InventoryService : IInventoryService
         _context.Inventories.Remove(inventory);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

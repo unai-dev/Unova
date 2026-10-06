@@ -2,15 +2,20 @@
 
 public class LocationService : ILocationService
 {
+    #region Fields
     private readonly IMapper _mapper;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public LocationService(IMapper mapper, UnovaDbContext context)
     {
         _mapper = mapper;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<LocationReadDto>> GetAll()
     {
         var locations = await _context.Locations
@@ -71,4 +76,5 @@ public class LocationService : ILocationService
         _context.Remove(location);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

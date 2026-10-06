@@ -2,15 +2,20 @@ namespace Unova.App.Services;
 
 public class AuthorService : IAuthorService
 {
+    #region Fields
     private readonly IMapper _mapper;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public AuthorService(IMapper mapper, UnovaDbContext context)
     {
         _mapper = mapper;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<AuthorReadDto>> GetAll()
     {
         var authors = await _context.Authors
@@ -66,4 +71,5 @@ public class AuthorService : IAuthorService
         _context.Remove(author);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

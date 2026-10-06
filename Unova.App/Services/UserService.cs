@@ -5,11 +5,14 @@ namespace Unova.App.Services;
 
 public class UserService : IUserService
 {
+    #region Fields
     private readonly UserManager<User> _userManager;
     private readonly IMapper _mapper;
     private readonly IHttpContextAccessor _accessor;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public UserService(UserManager<User> userManager, IMapper mapper, IHttpContextAccessor accessor, UnovaDbContext context)
     {
         _userManager = userManager;
@@ -17,7 +20,9 @@ public class UserService : IUserService
         _accessor = accessor;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<UserReadDto>> GetAll()
     {
         var users = await _userManager.Users
@@ -98,5 +103,5 @@ public class UserService : IUserService
 
         await _userManager.DeleteAsync(user);
     }
+    #endregion
 }
-

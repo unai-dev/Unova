@@ -2,15 +2,20 @@ namespace Unova.App.Services;
 
 public class CategoryService : ICategoryService
 {
+    #region Fields
     private readonly IMapper _mapper;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public CategoryService(IMapper mapper, UnovaDbContext context)
     {
         _mapper = mapper;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<CategoryReadDto>> GetAll()
     {
         var categories = await _context.Categories
@@ -64,4 +69,5 @@ public class CategoryService : ICategoryService
         _context.Remove(category);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

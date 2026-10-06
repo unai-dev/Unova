@@ -13,17 +13,22 @@ namespace Unova.App.Services;
 
 public class AuthService : IAuthService
 {
+    #region Fields
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IConfiguration _configuration;
+    #endregion
 
+    #region Constructor
     public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _configuration = configuration;
     }
+    #endregion
 
+    #region Methods
     public async Task<AuthResponse> Register(UserCreateDto dto)
     {
         //Si el email ya consta en la base de datos, lanzamos badrequest
@@ -76,8 +81,9 @@ public class AuthService : IAuthService
 
         await _userManager.RemoveClaimAsync(user, new Claim("admin", "true"));
     }
+    #endregion
 
-    #region GetJwtToken----------------------------------------------------------------------------------
+    #region GetJwtToken
     private async Task<AuthResponse> GetJwtToken(string email)
     {
         var claims = new List<Claim> { new Claim("email", email) };
@@ -102,7 +108,6 @@ public class AuthService : IAuthService
         var generatedToken = new JwtSecurityTokenHandler().WriteToken(securityKey);
 
         return new AuthResponse(generatedToken, expiration);
-
     }
     #endregion
 }

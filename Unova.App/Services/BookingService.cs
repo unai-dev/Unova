@@ -4,17 +4,22 @@ namespace Unova.App.Services;
 
 public class BookingService : IBookingService
 {
+    #region Fields
     private readonly UnovaDbContext _context;
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
+    #endregion
 
+    #region Constructor
     public BookingService(UnovaDbContext context, IMapper mapper, UserManager<User> userManager)
     {
         _context = context;
         _mapper = mapper;
         _userManager = userManager;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<BookingReadDto>> GetAll()
     {
         var bookings = await _context.Bookings
@@ -46,6 +51,7 @@ public class BookingService : IBookingService
             ?? throw new NotFoundException($"La reserva con ID {ID} no existe");
         return _mapper.Map<BookingReadDto>(booking);
     }
+
     public async Task<BookingDetailDto> GetDetail(int ID)
     {
         var booking = await _context.Bookings
@@ -104,5 +110,5 @@ public class BookingService : IBookingService
         _context.Remove(booking);
         await _context.SaveChangesAsync();
     }
-
+    #endregion
 }

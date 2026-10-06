@@ -2,15 +2,20 @@ namespace Unova.App.Services;
 
 public class LanguageService : ILanguageService
 {
+    #region Fields
     private readonly IMapper _mapper;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public LanguageService(IMapper mapper, UnovaDbContext context)
     {
         _mapper = mapper;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<LanguageReadDto>> GetAll()
     {
         var languages = await _context.Languages
@@ -63,4 +68,5 @@ public class LanguageService : ILanguageService
         _context.Remove(language);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }
