@@ -22,7 +22,7 @@ public class EnterpriseConfiguration : IEntityTypeConfiguration<Enterprise>
         builder.Property(x => x.Phone)
             .HasMaxLength(20)
             .IsRequired();
-        
+
         builder.Property(x => x.Email)
             .HasMaxLength(255)
             .IsRequired();

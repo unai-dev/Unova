@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-
-using Microsoft.EntityFrameworkCore;
-
-using Unova.Domain;
-
-namespace Unova.App.Services;
+﻿namespace Unova.App.Services;
 
 public class BookService : IBookService
 {

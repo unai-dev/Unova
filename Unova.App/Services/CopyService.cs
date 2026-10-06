@@ -1,7 +1,3 @@
-using AutoMapper;
-
-using Microsoft.EntityFrameworkCore;
-
 namespace Unova.App.Services;
 
 public class CopyService : ICopyService

@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace Unova.App.Services;
+﻿namespace Unova.App.Services;
 
 public class LocationService : ILocationService
 {
