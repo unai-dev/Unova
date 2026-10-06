@@ -4,7 +4,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 {
     public void Configure(EntityTypeBuilder<Address> builder)
     {
-        builder.ToTable("asp_Addresses");
+        builder.ToTable("AspNetAddresses");
 
         builder.HasKey(x => x.ID);
 

@@ -4,7 +4,7 @@ public class InventoryConfiguration : IEntityTypeConfiguration<Inventory>
 {
     public void Configure(EntityTypeBuilder<Inventory> builder)
     {
-        builder.ToTable("asp_Inventories");
+        builder.ToTable("AspNetInventories");
 
         builder.HasKey(x => x.ID);
 

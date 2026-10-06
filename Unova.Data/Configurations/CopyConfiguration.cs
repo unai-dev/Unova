@@ -4,7 +4,7 @@ public class CopyConfiguration : IEntityTypeConfiguration<Copy>
 {
     public void Configure(EntityTypeBuilder<Copy> builder)
     {
-        builder.ToTable("asp_Copies");
+        builder.ToTable("AspNetCopies");
 
         builder.HasKey(x => x.ID);
 

@@ -4,7 +4,7 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
 {
     public void Configure(EntityTypeBuilder<Author> builder)
     {
-        builder.ToTable("asp_Authors");
+        builder.ToTable("AspNetAuthors");
 
         builder.HasKey(x => x.ID);
 

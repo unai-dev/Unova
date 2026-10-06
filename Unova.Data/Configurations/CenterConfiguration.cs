@@ -4,7 +4,7 @@ public class CenterConfiguration : IEntityTypeConfiguration<Center>
 {
     public void Configure(EntityTypeBuilder<Center> builder)
     {
-        builder.ToTable("asp_Centers");
+        builder.ToTable("AspNetCenters");
 
         builder.HasKey(x => x.ID);
 
