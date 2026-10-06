@@ -71,10 +71,10 @@ public class BookingService : IBookingService
         var userExists = await _userManager.FindByIdAsync(dto.UserID.ToString())
             ?? throw new NotFoundException($"Usuario con ID {dto.UserID} no existe");
 
-        //Si el usuario ha superado el limite de reservas(2) lanzamos un badrequest
+        //Si el usuario ha superado el limite de reservas lanzamos un badrequest
         //Filtramos por userID y por el estado de la reserva(activo)
         var totalBookingsUser = await _context.Bookings.CountAsync(x => x.UserID == dto.UserID && x.Status == EBookingStatus.Active);
-        if (totalBookingsUser >= 2)
+        if (totalBookingsUser >= StaticVariables.BOOKINGS_LIMIT)
             throw new BadRequestException($"Lo sentimos. El usuario {dto.UserID} ha superado el limite de reservas activas");
 
         if (dto.StartTime < DateTime.UtcNow)
@@ -95,7 +95,7 @@ public class BookingService : IBookingService
 
         var booking = _mapper.Map<Booking>(dto);
         //Agregamos los dias que el usuario tiene para recoger el libro(3)
-        booking.PickupDeadline = booking.StartTime.AddDays(3);
+        booking.PickupDeadline = booking.StartTime.AddDays(StaticVariables.BOOKING_PICKUPDEADLINE);
 
         _context.Add(booking);
         await _context.SaveChangesAsync();
