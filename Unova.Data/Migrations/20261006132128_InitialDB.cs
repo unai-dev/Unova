@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace Unova.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -319,8 +320,6 @@ namespace Unova.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalCopies = table.Column<int>(type: "int", nullable: false),
-                    CopiesWithLocation = table.Column<int>(type: "int", nullable: false),
-                    CopiesWithoutLocation = table.Column<int>(type: "int", nullable: false),
                     ReservedCopies = table.Column<int>(type: "int", nullable: false),
                     AvailableCopies = table.Column<int>(type: "int", nullable: false),
                     Observations = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
@@ -474,11 +473,6 @@ namespace Unova.Infrastructure.Migrations
                     { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "EU", "Euskera", null },
                     { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "FR", "Français", null }
                 });
-
-            migrationBuilder.InsertData(
-                table: "asp_Locations",
-                columns: new[] { "ID", "Aisle", "CenterID", "Column", "CreatedAt", "IsActive", "Shelf", "UpdatedAt" },
-                values: new object[] { 1, "N/A", 0, "N/A", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "N/A", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_asp_Bookings_CopyID",

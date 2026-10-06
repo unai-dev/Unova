@@ -503,12 +503,6 @@ namespace Unova.Infrastructure.Migrations
                     b.Property<int>("BookID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CopiesWithLocation")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CopiesWithoutLocation")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -651,19 +645,6 @@ namespace Unova.Infrastructure.Migrations
                     b.HasIndex("CenterID");
 
                     b.ToTable("asp_Locations", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Aisle = "N/A",
-                            CenterID = 0,
-                            Column = "N/A",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Limit = 0,
-                            Shelf = "N/A"
-                        });
                 });
 
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
