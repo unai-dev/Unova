@@ -2,17 +2,22 @@
 
 public class CenterService : ICenterService
 {
+    #region Fields
     private readonly IUserService _userService;
     private readonly UnovaDbContext _context;
     private readonly IMapper _mapper;
+    #endregion
 
+    #region Constructor
     public CenterService(IUserService userService, UnovaDbContext context, IMapper mapper)
     {
         _userService = userService;
         _context = context;
         _mapper = mapper;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<CenterReadDto>> GetAll()
     {
         var currentUser = await _userService.GetMe();
@@ -24,6 +29,7 @@ public class CenterService : ICenterService
             .ToListAsync();
         return _mapper.Map<IEnumerable<CenterReadDto>>(centers);
     }
+
     public async Task<CenterReadDto> GetByID(int ID)
     {
         var center = await _context.Centers
@@ -74,4 +80,5 @@ public class CenterService : ICenterService
         _context.Centers.Remove(center);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

@@ -2,15 +2,20 @@
 
 public class BookService : IBookService
 {
+    #region Fields
     private readonly IMapper _mapper;
     private readonly UnovaDbContext _context;
+    #endregion
 
+    #region Constructor
     public BookService(IMapper mapper, UnovaDbContext context)
     {
         _mapper = mapper;
         _context = context;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<BookReadDto>> GetAll()
     {
         var books = await _context.Books
@@ -77,4 +82,5 @@ public class BookService : IBookService
         _context.Remove(book);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }

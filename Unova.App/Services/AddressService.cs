@@ -2,15 +2,20 @@
 
 public class AddressService : IAddressService
 {
+    #region Fields
     private readonly UnovaDbContext _context;
     private readonly IMapper _mapper;
+    #endregion
 
+    #region Constructor
     public AddressService(UnovaDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
+    #endregion
 
+    #region Methods
     public async Task<IEnumerable<AddressReadDto>> GetAll()
     {
         var addresses = await _context.Addresses
@@ -65,4 +70,5 @@ public class AddressService : IAddressService
         _context.Addresses.Remove(address);
         await _context.SaveChangesAsync();
     }
+    #endregion
 }
