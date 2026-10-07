@@ -1,6 +1,6 @@
 ﻿namespace Unova.Infrastructure.Configurations;
 
-public class InventoryBookConfiguration : IEntityTypeConfiguration<BookInventory>
+public class BookInventoryConfiguration : IEntityTypeConfiguration<BookInventory>
 {
     public void Configure(EntityTypeBuilder<BookInventory> builder)
     {
