@@ -11,6 +11,7 @@ public class UnovaDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 
     #region DBSETS
     public DbSet<Book> Books => Set<Book>();
+    public DbSet<Product> Products => Set<Product>();
     public DbSet<Author> Authors => Set<Author>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Location> Locations => Set<Location>();
@@ -19,6 +20,7 @@ public class UnovaDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Copy> Copies => Set<Copy>();
     public DbSet<Language> Languages => Set<Language>();
     public DbSet<BookInventory> BookInventories => Set<BookInventory>();
+    public DbSet<ProductInventory> ProductInventories => Set<ProductInventory>();
     #endregion
 
     #region OnModelCreating
