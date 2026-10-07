@@ -17,6 +17,5 @@ public class User : IdentityUser<int>
 
     public List<Booking> Bookings { get; set; } = new List<Booking>();
     public List<BookInventory> BookInventories { get; set; } = new List<BookInventory>();
-    public List<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
     #endregion
 }

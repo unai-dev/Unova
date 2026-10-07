@@ -15,6 +15,5 @@ public class Product : UnovaEntity
     public int CategoryID { get; set; }
     public Category? Category { get; set; }
 
-    public List<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
     #endregion
 }
