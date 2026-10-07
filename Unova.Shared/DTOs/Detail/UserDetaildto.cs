@@ -1,5 +1,4 @@
-﻿using Unova.Shared.DTOs.Common;
-using Unova.Shared.DTOs.Read;
+﻿using Unova.Shared.DTOs.Read;
 
 namespace Unova.Shared.DTOs.Detail;
 
@@ -9,6 +8,6 @@ public class UserDetailDto : UserReadDto
     public int LanguageID { get; set; }
     public LanguageReadDto? Language { get; set; }
     public List<BookingReadDto> Bookings { get; set; } = new List<BookingReadDto>();
-    public List<InventoryReadDto> Inventories { get; set; } = new List<InventoryReadDto>();
+    public List<BookInventoryReadDto> BookInventories { get; set; } = new List<BookInventoryReadDto>();
     #endregion
 }
