@@ -16,6 +16,6 @@ public class User : IdentityUser<int>
     public Language? Language { get; set; }
 
     public List<Booking> Bookings { get; set; } = new List<Booking>();
-    public List<Inventory> Inventories { get; set; } = new List<Inventory>();
+    public List<BookInventory> BookInventories { get; set; } = new List<BookInventory>();
     #endregion
 }

@@ -32,7 +32,7 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<ICopyService, CopyService>();
 builder.Services.AddScoped<ILanguageService, LanguageService>();
-builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IBookInventoryService, InventoryService>();
 #endregion
 
 #region AUTOMAPPER 

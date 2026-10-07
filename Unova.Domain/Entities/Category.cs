@@ -10,5 +10,6 @@ public class Category : UnovaEntity
 
     #region Related Properties
     public List<Book> Books { get; set; } = new List<Book>();
+    public List<Product> Products { get; set; } = new List<Product>();
     #endregion
 }

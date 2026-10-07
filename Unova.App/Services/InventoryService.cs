@@ -1,6 +1,6 @@
 ﻿namespace Unova.App.Services;
 
-public class InventoryService : IInventoryService
+public class InventoryService : IBookInventoryService
 {
     #region Fields
     private readonly UnovaDbContext _context;
@@ -18,36 +18,36 @@ public class InventoryService : IInventoryService
     #endregion
 
     #region Methods
-    public async Task<IEnumerable<InventoryReadDto>> GetAll()
+    public async Task<IEnumerable<BookInventoryReadDto>> GetAll()
     {
-        var inventories = await _context.Inventories
+        var inventories = await _context.BookInventories
             .AsNoTracking()
             .ToListAsync();
-        return _mapper.Map<IEnumerable<InventoryReadDto>>(inventories);
+        return _mapper.Map<IEnumerable<BookInventoryReadDto>>(inventories);
     }
-    public async Task<InventoryReadDto> GetByID(int ID)
+    public async Task<BookInventoryReadDto> GetByID(int ID)
     {
-        var inventory = await _context.Inventories
+        var inventory = await _context.BookInventories
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"El inventario con ID {ID} no existe");
 
-        return _mapper.Map<InventoryReadDto>(inventory);
+        return _mapper.Map<BookInventoryReadDto>(inventory);
     }
 
-    public async Task<InventoryDetailDto> GetDetail(int ID)
+    public async Task<BookInventoryDetailDto> GetDetail(int ID)
     {
-        var inventory = await _context.Inventories
+        var inventory = await _context.BookInventories
             .Include(x => x.Book)
             .Include(x => x.User)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"El inventario con ID {ID} no existe");
 
-        return _mapper.Map<InventoryDetailDto>(inventory);
+        return _mapper.Map<BookInventoryDetailDto>(inventory);
     }
 
-    public async Task<InventoryReadDto> Create(InventoryCreateDto dto)
+    public async Task<BookInventoryReadDto> Create(BookInventoryCreateDto dto)
     {
         var book = await _context.Books
             .AsNoTracking()
@@ -55,32 +55,36 @@ public class InventoryService : IInventoryService
             ?? throw new NotFoundException($"El libro con ID {dto.BookID} no existe");
 
         var currentUser = await _userService.GetMe();
-        var inventory = _mapper.Map<Inventory>(dto);
+        var inventory = _mapper.Map<BookInventory>(dto);
 
         var totalCopies = book.Copies.Count();
+        var inactiveCopies = book.Copies.Count(x => !x.IsActive);
+        var activeCopies = totalCopies - inactiveCopies;
         var reservedCopies = await _context.Bookings
             .CountAsync(x => x.Copy!.BookID == dto.BookID
             && x.Status == EBookingStatus.Active);
         var availableCopies = totalCopies - reservedCopies;
 
-        inventory.TotalCopies = totalCopies;
+        inventory.Total = totalCopies;
+        inventory.Inactive = inactiveCopies;
+        inventory.Active = activeCopies;
         inventory.AvailableCopies = availableCopies;
         inventory.ReservedCopies = reservedCopies;
         inventory.UserID = currentUser.ID;
 
-        _context.Inventories.Add(inventory);
+        _context.BookInventories.Add(inventory);
         await _context.SaveChangesAsync();
 
-        return _mapper.Map<InventoryReadDto>(inventory);
+        return _mapper.Map<BookInventoryReadDto>(inventory);
     }
 
     public async Task Delete(int ID)
     {
-        var inventory = await _context.Inventories
+        var inventory = await _context.BookInventories
             .FirstOrDefaultAsync(x => x.ID == ID)
             ?? throw new NotFoundException($"El inventario con ID {ID} no existe");
 
-        _context.Inventories.Remove(inventory);
+        _context.BookInventories.Remove(inventory);
         await _context.SaveChangesAsync();
     }
     #endregion
