@@ -1,5 +1,4 @@
-﻿using Unova.Shared.DTOs.Common;
-using Unova.Shared.DTOs.Read;
+﻿using Unova.Shared.DTOs.Read;
 
 namespace Unova.Shared.DTOs.Detail;
 
@@ -13,6 +12,6 @@ public class BookDetailDto : BookReadDto
 
     public List<CopyReadDto> Copies { get; set; } = new List<CopyReadDto>();
     public List<BookingReadDto> Bookings { get; set; } = new List<BookingReadDto>();
-    public List<InventoryReadDto> Inventories { get; set; } = new List<InventoryReadDto>();
+    public List<BookInventoryReadDto> BookInventories { get; set; } = new List<BookInventoryReadDto>();
     #endregion
 }
