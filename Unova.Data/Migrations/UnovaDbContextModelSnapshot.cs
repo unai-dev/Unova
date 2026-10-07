@@ -598,52 +598,10 @@ namespace Unova.Infrastructure.Migrations
 
                     b.HasIndex("CategoryID");
 
+                    b.HasIndex("EAN")
+                        .IsUnique();
+
                     b.ToTable("AspNetProducts", (string)null);
-                });
-
-            modelBuilder.Entity("Unova.Domain.Entities.ProductInventory", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("Active")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Inactive")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Observations")
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Total")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("AspNetProductInventories", (string)null);
                 });
 
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
@@ -871,25 +829,6 @@ namespace Unova.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Unova.Domain.Entities.ProductInventory", b =>
-                {
-                    b.HasOne("Unova.Domain.Entities.Product", "Product")
-                        .WithMany("ProductInventories")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Unova.Domain.Entities.User", "User")
-                        .WithMany("ProductInventories")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
                 {
                     b.HasOne("Unova.Domain.Entities.Language", "Language")
@@ -935,18 +874,11 @@ namespace Unova.Infrastructure.Migrations
                     b.Navigation("Copies");
                 });
 
-            modelBuilder.Entity("Unova.Domain.Entities.Product", b =>
-                {
-                    b.Navigation("ProductInventories");
-                });
-
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
                 {
                     b.Navigation("BookInventories");
 
                     b.Navigation("Bookings");
-
-                    b.Navigation("ProductInventories");
                 });
 #pragma warning restore 612, 618
         }
