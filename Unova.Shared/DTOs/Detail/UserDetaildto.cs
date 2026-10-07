@@ -1,4 +1,5 @@
-﻿using Unova.Shared.DTOs.Read;
+﻿using Unova.Shared.DTOs.Common;
+using Unova.Shared.DTOs.Read;
 
 namespace Unova.Shared.DTOs.Detail;
 

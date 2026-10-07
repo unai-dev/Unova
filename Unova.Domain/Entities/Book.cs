@@ -20,6 +20,6 @@ public class Book : UnovaEntity
     public Category? Category { get; set; }
 
     public List<Copy> Copies { get; set; } = new List<Copy>();
-    public List<Inventory> Inventories { get; set; } = new List<Inventory>();
+    public List<BookInventory> BookInventories { get; set; } = new List<BookInventory>();
     #endregion
 }

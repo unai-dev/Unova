@@ -1,10 +1,10 @@
 ﻿namespace Unova.Infrastructure.Configurations;
 
-public class InventoryConfiguration : IEntityTypeConfiguration<Inventory>
+public class InventoryBookConfiguration : IEntityTypeConfiguration<BookInventory>
 {
-    public void Configure(EntityTypeBuilder<Inventory> builder)
+    public void Configure(EntityTypeBuilder<BookInventory> builder)
     {
-        builder.ToTable("AspNetInventories");
+        builder.ToTable("AspNetBookInventories");
 
         builder.HasKey(x => x.ID);
 
@@ -12,12 +12,12 @@ public class InventoryConfiguration : IEntityTypeConfiguration<Inventory>
             .HasMaxLength(2000);
 
         builder.HasOne(x => x.Book)
-            .WithMany(x => x.Inventories)
+            .WithMany(x => x.BookInventories)
             .HasForeignKey(x => x.BookID)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.User)
-            .WithMany(x => x.Inventories)
+            .WithMany(x => x.BookInventories)
             .HasForeignKey(x => x.UserID)
             .OnDelete(DeleteBehavior.Restrict);
     }

@@ -9,17 +9,17 @@ using Unova.Shared.DTOs.Read;
 namespace Unova.API.Controllers;
 
 [Route("api/inventories")]
-public class InventoryController : UnovaController
+public class BookInventoryController : UnovaController
 {
-    private readonly IInventoryService _inventoryService;
+    private readonly IBookInventoryService _inventoryService;
 
-    public InventoryController(IInventoryService inventoryService)
+    public BookInventoryController(IBookInventoryService inventoryService)
     {
         _inventoryService = inventoryService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<InventoryReadDto>>> Get()
+    public async Task<ActionResult<IEnumerable<BookInventoryReadDto>>> Get()
     {
         var inventories = await _inventoryService.GetAll();
 
@@ -27,7 +27,7 @@ public class InventoryController : UnovaController
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<InventoryReadDto>> GetByID(
+    public async Task<ActionResult<BookInventoryReadDto>> GetByID(
         [FromRoute] int ID)
     {
         var inventory = await _inventoryService.GetByID(ID);
@@ -36,7 +36,7 @@ public class InventoryController : UnovaController
     }
 
     [HttpGet("detail/{id:int}")]
-    public async Task<ActionResult<InventoryDetailDto>> GetDetail(
+    public async Task<ActionResult<BookInventoryDetailDto>> GetDetail(
         [FromRoute] int ID)
     {
         var inventory = await _inventoryService.GetDetail(ID);
@@ -45,8 +45,8 @@ public class InventoryController : UnovaController
     }
 
     [HttpPost]
-    public async Task<ActionResult<InventoryReadDto>> Create(
-        [FromBody] InventoryCreateDto dto)
+    public async Task<ActionResult<BookInventoryReadDto>> Create(
+        [FromBody] BookInventoryCreateDto dto)
     {
         var inventory = await _inventoryService.Create(dto);
 
