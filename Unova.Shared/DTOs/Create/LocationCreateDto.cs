@@ -16,6 +16,5 @@ public class LocationCreateDto
     #endregion
 
     #region Related properties
-    public int CenterID { get; set; }
     #endregion
 }

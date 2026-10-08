@@ -19,7 +19,6 @@ public class ProductCreateDto
     #endregion
 
     #region Related Properties
-    [Range(1, int.MaxValue)]
     public int CategoryID { get; set; }
     #endregion
 }

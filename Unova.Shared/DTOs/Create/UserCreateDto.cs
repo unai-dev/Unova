@@ -17,8 +17,6 @@ public class UserCreateDto
     #endregion
 
     #region Related Properties
-    public int EnterpriseID { get; set; }
     public int LanguageID { get; set; }
-    public int CenterID { get; set; }
     #endregion
 }
