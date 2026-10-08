@@ -12,6 +12,9 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
             .HasMaxLength(5)
             .IsRequired();
 
+        builder.HasIndex(x => x.Iso639Code)
+            .IsUnique();
+
         builder.Property(x => x.Name)
             .HasMaxLength(55)
             .IsRequired();

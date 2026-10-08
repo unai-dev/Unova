@@ -12,6 +12,9 @@ public class CopyConfiguration : IEntityTypeConfiguration<Copy>
             .HasMaxLength(50)
             .IsRequired();
 
+        builder.HasIndex(x => x.Code)
+            .IsUnique();
+
         builder.HasOne(x => x.Book)
             .WithMany(x => x.Copies)
             .HasForeignKey(x => x.BookID)
