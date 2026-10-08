@@ -1,11 +1,9 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Unova.Shared.DTOs.Auth;
 using Unova.Shared.Responses;
 
@@ -17,14 +15,18 @@ public class AuthService : IAuthService
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IConfiguration _configuration;
+    private readonly UnovaDbContext _context;
     #endregion
 
     #region Constructor
-    public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
+    public AuthService(UserManager<User> userManager,
+        SignInManager<User> signInManager,
+        IConfiguration configuration, UnovaDbContext context)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _configuration = configuration;
+        _context = context;
     }
     #endregion
 
@@ -41,9 +43,15 @@ public class AuthService : IAuthService
         if (cifUnique)
             throw new BadRequestException($"El CIF {dto.CIF} ya esta en uso");
 
+        var languageExists = await _context.Languages.AnyAsync(x => x.ID == dto.LanguageID);
+
+        if (!languageExists)
+            throw new NotFoundException($"El idioma indicado no existe.");
+
         var user = new User
         {
             CIF = dto.CIF,
+            LanguageID = dto.LanguageID,
             UserName = dto.UserName,
             Email = dto.Email
         };
