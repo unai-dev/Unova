@@ -15,5 +15,11 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
         builder.Property(x => x.LastName)
             .IsRequired()
             .HasMaxLength(55);
+
+        builder.HasData(
+            new Author { ID = 1, FirstName = "Unai", LastName  = "Villar", CreatedAt = DateTime.MinValue},
+            new Author { ID = 2, FirstName = "Beni", LastName  = "Villar", CreatedAt = DateTime.MinValue},
+            new Author { ID = 3, FirstName = "Candi", LastName  = "Cabello", CreatedAt = DateTime.MinValue}
+        );
     }
 }

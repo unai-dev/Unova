@@ -236,6 +236,32 @@ namespace Unova.Infrastructure.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("AspNetAuthors", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Unai",
+                            IsActive = true,
+                            LastName = "Villar"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Beni",
+                            IsActive = true,
+                            LastName = "Villar"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Candi",
+                            IsActive = true,
+                            LastName = "Cabello"
+                        });
                 });
 
             modelBuilder.Entity("Unova.Domain.Entities.Book", b =>
@@ -415,6 +441,29 @@ namespace Unova.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("AspNetCategories", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Vida"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Amor"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Terror"
+                        });
                 });
 
             modelBuilder.Entity("Unova.Domain.Entities.Copy", b =>
