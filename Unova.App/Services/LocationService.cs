@@ -50,11 +50,8 @@ public class LocationService : ILocationService
         dto.Column = dto.Column.ToUpper();
         dto.Aisle = dto.Aisle.ToUpper();
 
-        //Si la localizacion concatenando, pasillo, columna y estante existe, lanzamos badrequest
-        var existsLocation = await _context.Locations.AnyAsync(
-            x => x.Column.Equals(dto.Column) &&
-            x.Shelf.Equals(dto.Shelf) &&
-            x.Aisle.Equals(dto.Aisle));
+        var existsLocation = await _context.Locations.AnyAsync(x => x.Code.Equals(dto.Code));
+
         if (existsLocation)
             throw new BadRequestException($"Ya existe la localizacion introducida");
 

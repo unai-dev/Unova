@@ -46,11 +46,10 @@ public class AuthorService : IAuthorService
 
     public async Task<AuthorReadDto> Create(AuthorCreateDto dto)
     {
-        //Validamos que el usuario con el mismo nombre no exista
         var authorExists = await _context.Authors
-            .AnyAsync(x => x.FirstName.Equals(dto.FirstName) && x.LastName.Equals(dto.LastName));
+            .AnyAsync(x => x.Code.Equals(dto.Code));
         if (authorExists)
-            throw new BadRequestException($"El autor {dto.FirstName} {dto.LastName} ya existe");
+            throw new BadRequestException($"El autor con codigo {dto.Code} ya existe");
 
         var author = _mapper.Map<Author>(dto);
         _context.Add(author);
