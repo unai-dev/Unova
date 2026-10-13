@@ -5,6 +5,8 @@ namespace Unova.Domain.Entities;
 public class Location : UnovaEntity
 {
     #region Properties
+    // propiedad que se utilizara como identificador extra
+    public string Code { get; set; } = null!;
     public string Aisle { get; set; } = null!;
     public string Shelf { get; set; } = null!;
     public string Column { get; set; } = null!;

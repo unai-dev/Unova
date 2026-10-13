@@ -4,6 +4,7 @@ namespace Unova.Shared.DTOs.Read;
 
 public class LocationReadDto : UnovaDTO
 {
+    public required string Code { get; set; }
     public required string Aisle { get; set; }
     public required string Shelf { get; set; }
     public required string Column { get; set; }

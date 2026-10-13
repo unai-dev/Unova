@@ -5,6 +5,7 @@ namespace Unova.Shared.DTOs.Read;
 public class AddressReadDto : UnovaDTO
 {
     #region Properties
+    public required string Code { get; set; }
     public required string MainAddress { get; set; }
     public string? SecondAddress { get; set; }
     public required string District { get; set; }

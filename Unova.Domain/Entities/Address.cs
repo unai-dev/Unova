@@ -5,6 +5,8 @@ namespace Unova.Domain.Entities;
 public class Address : UnovaEntity
 {
     #region Properties
+    // propiedad que se utilizara como identificador extra
+    public string Code { get; set; } = null!;
     public string MainAddress { get; set; } = null!;
     public string? SecondAddress { get; set; }
     public string District { get; set; } = null!;

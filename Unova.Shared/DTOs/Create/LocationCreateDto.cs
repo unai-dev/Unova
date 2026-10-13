@@ -3,6 +3,11 @@ namespace Unova.Shared.DTOs.Create;
 public class LocationCreateDto
 {
     #region Properties
+
+    [Required]
+    [StringLength(55)]
+    public string Code { get; set; } = string.Empty;
+
     [Required]
     [StringLength(5)]
     public string Aisle { get; set; } = string.Empty;

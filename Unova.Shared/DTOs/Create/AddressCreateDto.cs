@@ -6,6 +6,10 @@ public class AddressCreateDto
     #region Properties
 
     [Required]
+    [StringLength(55)]
+    public string Code { get; set; } = string.Empty;
+
+    [Required]
     [StringLength(2000)]
     public string MainAddress { get; set; } = string.Empty;
 

@@ -8,6 +8,13 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 
         builder.HasKey(x => x.ID);
 
+        builder.Property(x => x.Code)
+            .HasMaxLength(55)
+            .IsRequired();
+
+        builder.HasIndex(x => x.Code)
+            .IsUnique();
+
         builder.Property(x => x.Aisle)
             .IsRequired()
             .HasMaxLength(5);

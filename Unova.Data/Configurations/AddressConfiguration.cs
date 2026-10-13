@@ -8,6 +8,13 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 
         builder.HasKey(x => x.ID);
 
+        builder.Property(x => x.Code)
+            .HasMaxLength(55)
+            .IsRequired();
+
+        builder.HasIndex(x => x.Code)
+            .IsUnique();
+
         builder.Property(x => x.MainAddress)
             .HasMaxLength(2000)
             .IsRequired();

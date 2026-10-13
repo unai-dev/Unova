@@ -168,6 +168,11 @@ namespace Unova.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -203,6 +208,9 @@ namespace Unova.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.ToTable("AspNetAddresses", (string)null);
                 });
 
@@ -213,6 +221,11 @@ namespace Unova.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -235,12 +248,16 @@ namespace Unova.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.ToTable("AspNetAuthors", (string)null);
 
                     b.HasData(
                         new
                         {
                             ID = 1,
+                            Code = "111",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Unai",
                             IsActive = true,
@@ -249,6 +266,7 @@ namespace Unova.Infrastructure.Migrations
                         new
                         {
                             ID = 2,
+                            Code = "222",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Beni",
                             IsActive = true,
@@ -257,6 +275,7 @@ namespace Unova.Infrastructure.Migrations
                         new
                         {
                             ID = 3,
+                            Code = "333",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Candi",
                             IsActive = true,
@@ -588,6 +607,11 @@ namespace Unova.Infrastructure.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
                     b.Property<string>("Column")
                         .IsRequired()
                         .HasMaxLength(5)
@@ -613,6 +637,9 @@ namespace Unova.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.ToTable("AspNetLocations", (string)null);
                 });

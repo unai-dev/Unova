@@ -5,6 +5,8 @@ namespace Unova.Domain.Entities;
 public class Author : UnovaEntity
 {
     #region Properties
+    // propiedad que se utilizara como identificador extra
+    public string Code { get; set; } = null!;
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     #endregion
