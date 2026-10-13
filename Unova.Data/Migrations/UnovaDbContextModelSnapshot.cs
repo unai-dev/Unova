@@ -692,6 +692,49 @@ namespace Unova.Infrastructure.Migrations
                     b.ToTable("AspNetProducts", (string)null);
                 });
 
+            modelBuilder.Entity("Unova.Domain.Entities.Resource", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LanguageID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("LanguageID");
+
+                    b.ToTable("AspNetResources", (string)null);
+                });
+
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -917,6 +960,17 @@ namespace Unova.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Unova.Domain.Entities.Resource", b =>
+                {
+                    b.HasOne("Unova.Domain.Entities.Language", "Language")
+                        .WithMany("Resources")
+                        .HasForeignKey("LanguageID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+                });
+
             modelBuilder.Entity("Unova.Domain.Entities.User", b =>
                 {
                     b.HasOne("Unova.Domain.Entities.Language", "Language")
@@ -954,6 +1008,8 @@ namespace Unova.Infrastructure.Migrations
 
             modelBuilder.Entity("Unova.Domain.Entities.Language", b =>
                 {
+                    b.Navigation("Resources");
+
                     b.Navigation("Users");
                 });
 

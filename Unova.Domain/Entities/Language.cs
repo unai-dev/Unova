@@ -11,5 +11,6 @@ public class Language : UnovaEntity
 
     #region Related Properties
     public List<User> Users { get; set; } = new List<User>();
+    public List<Resource> Resources { get; set; } = new List<Resource>();
     #endregion
 }
