@@ -34,6 +34,7 @@ builder.Services.AddScoped<ICopyService, CopyService>();
 builder.Services.AddScoped<ILanguageService, LanguageService>();
 builder.Services.AddScoped<IBookInventoryService, InventoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IResourceService, ResourceService>();
 #endregion
 
 #region AUTOMAPPER 
