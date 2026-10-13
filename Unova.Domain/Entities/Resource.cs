@@ -10,7 +10,7 @@ public class Resource : UnovaEntity
     public string? Description { get; set; }
     #endregion
 
-    #region
+    #region Related Properties
     public int LanguageID { get; set; }
     public Language? Language { get; set; }
     #endregion
