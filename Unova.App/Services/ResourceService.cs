@@ -42,6 +42,18 @@ public class ResourceService : IResourceService
         return _mapper.Map<ResourceDetailDto>(resource);
     }
 
+    public async Task<string> GetRsc(string code)
+    {
+        var currentUser = await _userService.GetMe();
+        var language = currentUser.LanguageID;
+
+        var rsc = await _context.Resources
+            .FirstOrDefaultAsync(x => x.Code == code && x.LanguageID == language)
+            ?? throw new NotFoundException($"Resource with code {code} and languageid {language} not found.");
+
+        return rsc.Text;
+    }
+
     public async Task<ResourceReadDto> Create(ResourceCreateDto dto)
     {
         var resourceExists = await _context.Resources

@@ -12,9 +12,6 @@ public class ResourceConfiguration : IEntityTypeConfiguration<Resource>
             .HasMaxLength(55)
             .IsRequired();
 
-        builder.HasIndex(x => x.Code)
-            .IsUnique();
-
         builder.Property(x => x.Text)
             .IsRequired();
 

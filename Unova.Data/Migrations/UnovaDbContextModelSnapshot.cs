@@ -727,9 +727,6 @@ namespace Unova.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Code")
-                        .IsUnique();
-
                     b.HasIndex("LanguageID");
 
                     b.ToTable("AspNetResources", (string)null);

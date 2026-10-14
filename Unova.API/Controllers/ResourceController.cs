@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using Unova.API.Controllers.Common;
 using Unova.Shared.DTOs.Create;
 using Unova.Shared.DTOs.Detail;
@@ -41,6 +42,10 @@ public class ResourceController : UnovaController
 
         return Ok(resource);
     }
+
+    [HttpGet("rsc/{code}")]
+    public async Task<ActionResult<string>> GetRsc([FromQuery] string code)
+        => Ok(await _resourceService.GetRsc(code));
 
     [HttpPost]
     public async Task<ActionResult<ResourceReadDto>> Create(
