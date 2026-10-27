@@ -5,6 +5,9 @@ namespace Unova.App.Services;
 public class BookingService : IBookingService
 {
     #region Fields
+    public const int BOOKINGS_LIMIT = 2;
+    public const int BOOKING_PICKUPDEADLINE = 3;
+
     private readonly UnovaDbContext _context;
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
@@ -74,7 +77,7 @@ public class BookingService : IBookingService
         //Si el usuario ha superado el limite de reservas lanzamos un badrequest
         //Filtramos por userID y por el estado de la reserva(activo)
         var totalBookingsUser = await _context.Bookings.CountAsync(x => x.UserID == dto.UserID && x.Status == EBookingStatus.Active);
-        if (totalBookingsUser >= StaticVariables.BOOKINGS_LIMIT)
+        if (totalBookingsUser >= BOOKINGS_LIMIT)
             throw new BadRequestException($"Lo sentimos. El usuario {dto.UserID} ha superado el limite de reservas activas");
 
         if (dto.StartTime < DateTime.UtcNow)
@@ -95,7 +98,7 @@ public class BookingService : IBookingService
 
         var booking = _mapper.Map<Booking>(dto);
         //Agregamos los dias que el usuario tiene para recoger el libro(3)
-        booking.PickupDeadline = booking.StartTime.AddDays(StaticVariables.BOOKING_PICKUPDEADLINE);
+        booking.PickupDeadline = booking.StartTime.AddDays(BOOKING_PICKUPDEADLINE);
 
         _context.Add(booking);
         await _context.SaveChangesAsync();
