@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using Unova.API.Controllers.Common;
-using Unova.Shared.DTOs.Create;
-using Unova.Shared.DTOs.Detail;
-using Unova.Shared.DTOs.Read;
+using Unova.App.DTOs.Create;
+using Unova.App.DTOs.Detail;
+using Unova.App.DTOs.Read;
 
 namespace Unova.API.Controllers;
 

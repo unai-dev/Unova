@@ -1,0 +1,13 @@
+namespace Unova.App.DTOs.Create;
+
+public class BookingCreateDto
+{
+    #region Properties
+    public DateTime StartTime { get; set; } = DateTime.UtcNow;
+    #endregion
+
+    #region Related properties
+    public int UserID { get; set; }
+    public int CopyID { get; set; }
+    #endregion
+}

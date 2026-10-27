@@ -4,8 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Unova.Shared.DTOs.Auth;
-using Unova.Shared.Responses;
+using Unova.App.DTOs.Auth;
+using Unova.App.Responses;
 
 namespace Unova.App.Services;
 

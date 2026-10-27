@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Unova.App.Contracts;
-using Unova.Shared.DTOs.Auth;
-using Unova.Shared.DTOs.Create;
-using Unova.Shared.Responses;
+using Unova.App.DTOs.Auth;
+using Unova.App.DTOs.Create;
+using Unova.App.Responses;
 
 namespace Unova.API.Controllers;
 

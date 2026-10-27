@@ -1,5 +1,6 @@
-using Unova.Shared.DTOs.Auth;
-using Unova.Shared.Responses;
+using Unova.App.DTOs.Auth;
+using Unova.App.Responses;
+
 namespace Unova.App.Contracts;
 
 public interface IAuthService
